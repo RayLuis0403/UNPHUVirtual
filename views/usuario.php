@@ -71,7 +71,7 @@
 					
 						<div class="form-group">
 							<label>Clave</label>
-							<input class="form-control" placeholder="Clave" required  type='password' name='txtClave' id='txtClave' value="<?php  echo htmlentities($usuario->Clave); ?>"  />
+							<input class="form-control" placeholder="Clave" required  type='password' name='txtClave' id='txtClave' value="<?php  echo htmlentities(decrypt($usuario->Clave)); ?>"  />
 						</div>			
 					
 						<div class="form-group">

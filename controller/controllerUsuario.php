@@ -11,12 +11,12 @@
             $usuario->Nombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$usuario->Nombre;
             $usuario->Apellidos = (isset($_POST['txtApellidos']))?$_POST['txtApellidos']:$usuario->Apellidos;
             $usuario->Email = (isset($_POST['txtEmail']))?$_POST['txtEmail']:$usuario->Email;
-            $usuario->Clave = (isset($_POST['txtClave']))?md5($_POST['txtClave']):$usuario->Clave;
+            $usuario->Clave = (isset($_POST['txtClave']))?encrypt($_POST['txtClave']):$usuario->Clave;
             $usuario->Tipo = (isset($_POST['cbx_Tipo']))?$_POST['cbx_Tipo']:$usuario->Tipo;
             $usuario->Estado = (isset($_POST['cbx_Estado']))?$_POST['cbx_Estado']:$usuario->Estado;
             
             if($_POST['txtId'] == "0" || $_POST['txtId'] == "")
-            {   
+            {
                 $usuario->Fecha_Creacion = date("Y-m-d H:i:s");
             }
             else{
