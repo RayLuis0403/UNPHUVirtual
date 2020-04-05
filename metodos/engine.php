@@ -18,20 +18,3 @@ define("ISIE",$isie); //Constante que te dice si el Navegador es IE.
 
 //----------------------------------------------------------------
 
-function SelectControl($controlName, $valor, $options = []){
-		
-	$selectHtml = "<select class='form-control'  name='{$controlName}' id='{$controlName}' style='visibility:visible; width:px;' >";
-	foreach($options as $option) {
-				
-		$comp = "";
-		
-		if($option->code == $valor || $valor == $option->descripcion){
-			$comp = " selected='selected' ";
-		}
-
-		$selectHtml .= "<option $comp value='{$option->code}'>{$option->descripcion}</option>";
-	}
-	$selectHtml .= "</select>";
-		
-	echo $selectHtml;
-}
