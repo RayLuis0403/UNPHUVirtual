@@ -8,7 +8,7 @@
 	
 	$titulo .= "-UNPHU Virtual";
 
-	//ini_set("display_errors", 0);
+	/*ini_set("display_errors", 0);
 	ini_set("register_globals",0);
 	ini_set("memory_limit", "16M");
 	ini_set("upload_max_filesize", "2M");
@@ -16,7 +16,7 @@
 	ini_set("max_input_nesting_levels ",64);
 	ini_set("allow_url_fopen",0);
 	ini_set("allow_url_include ",0);
-	ini_set("expose_php",0);
+	ini_set("expose_php",0);*/
 
 	$obj=new plantilla($titulo);
 
@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="../Scripts/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="../Scripts/bootstrap.js"> </script>
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
-		<link href="../css/estyle.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
 		
 		<title><?php echo $titulo; ?></title>
 
