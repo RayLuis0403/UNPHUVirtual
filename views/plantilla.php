@@ -82,7 +82,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"></button>
-					<h4 class="modal-title">¿Desea Salir?</h4>
+					<h4 class="modal-title">¿Desea Salir de aqui?</h4>
 					</div>
 					<!--Aca abajo hay una parte para el cuerpo de la opcion salir 
 					por si hay interes en modificar
