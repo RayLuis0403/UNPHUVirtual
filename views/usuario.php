@@ -16,7 +16,15 @@
 		<script type="text/javascript">
 
 			function editar(cod){
-				window.location="usuario.php?cod="+cod;
+				let path = window.location.pathname;
+				let page = path.split("/").pop();
+
+				let queryString = '';
+				if(cod >= 0){
+					queryString = "?cod="+cod;
+				}
+				
+				window.location= page + queryString;
 			}
 
 			function checkForm(){
@@ -40,6 +48,7 @@
 
 				return checked;
 			}
+
 		</script>
 	</head>
 	<body>
@@ -95,7 +104,7 @@
 						</div>
 					<div>
 						<button type='submit' class='btn btn-primary'>Guardar</button>
-						<button type='reset' class='btn btn-default'>Cancelar</button>
+						<button type='button' class='btn btn-default' onClick="editar();">Cancelar</button>
 					</div>
 					</form>
 					<div id='divRsusuario'></div>
