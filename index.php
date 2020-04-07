@@ -1,6 +1,6 @@
 <?php  
 	$titulo = "Inicio";
-	include ('./views/plantilla.php');
+	include ('./views/home.php');
 	
 	include ('./metodos/engine.php');
 
