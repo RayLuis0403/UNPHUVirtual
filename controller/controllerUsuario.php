@@ -15,8 +15,9 @@
             $usuario->Tipo = (isset($_POST['cbx_Tipo']))?$_POST['cbx_Tipo']:$usuario->Tipo;
             $usuario->Estado = (isset($_POST['cbx_Estado']))?$_POST['cbx_Estado']:$usuario->Estado;
             
-            if($_POST['txtId'] == "0" || $_POST['txtId'] == "")
+            if($usuario->Id == "0" || $usuario->Id == "")
             {
+                $usuario->Id = "0";
                 $usuario->Fecha_Creacion = date("Y-m-d H:i:s");
             }
             else{

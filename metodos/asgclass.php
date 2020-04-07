@@ -184,7 +184,7 @@ TEXT2;
 		
 		$this->dbname = (is_null($dbname))?DB_NAME:$dbname;
 		
-		$sql = "select * from `information_schema`.`COLUMNS` where `TABLE_SCHEMA` = '".$this->dbname."' and `TABLE_NAME` = '{$this->tabla}'";
+		$sql = "select * from `information_schema`.`COLUMNS` where `TABLE_SCHEMA` = '".$this->dbname."' and `TABLE_NAME` = '{$this->tabla}'  order by ordinal_position";
 		
 		$rs = mysqli_query(asgMng::getCon(), $sql);
 
