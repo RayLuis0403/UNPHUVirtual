@@ -75,27 +75,27 @@
 	</head>
 
 	<body >
-		<!-- ABAJO opcion para salir -->
+		<!-- ABAJO opcion para salir -- >
 		<div class="modal fade" id="salir" tabindex="-1" role="dialog">
-			<!-- cambiar el id junto con el data-target-->
+			< !-- cambiar el id junto con el data-target-- >
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"></button>
-					<h4 class="modal-title">¿Desea Salir?</h4>
+						<button type="button" class="close" data-dismiss="modal"></button>
+						<h4 class="modal-title">¿Desea Salir?</h4>
 					</div>
-					<!--Aca abajo hay una parte para el cuerpo de la opcion salir 
+					< !--Aca abajo hay una parte para el cuerpo de la opcion salir 
 					por si hay interes en modificar
 					<div class="modal-body">
-					</div> -->
+					</div> -- >
 					<div class="modal-footer">
-					<a href="logout.php" ><button type="button" class="btn btn-primary" onclick="salir();">Salir</button></a>
-					
+						<a href="logout.php" ><button type="button" class="btn btn-primary" onclick="salir();">Salir</button></a>
 					</div>
 				</div>
 				
 			</div>	
 		</div>
+		-->
 		<div id='divcuerpo'>
 	<?php
 	}
