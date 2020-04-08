@@ -699,7 +699,7 @@ class comboBox implements control
 		 
 		$this->selectValue = (isset($_POST[$this->id]) && $this->selectValue == "")?$_POST[$this->id]:$this->selectValue;
 		$nuleable = ($this->isnull)?"":"visibility:hidden; height:1px;";
-		$control .= "<select class='$this->class' $this->accion name='$this->id' id='$this->id' style='visibility:$this->visibility; width:{$this->width}px;' >";
+		$control .= "<select class='cbx_$this->class' $this->accion name='cbx_$this->id' id='$this->id' style='visibility:$this->visibility; width:{$this->width}px;' >";
 		
 		if(!$this->isnull){
 			$control .= "<option style='$nuleable' value=''>{$this->text}";
