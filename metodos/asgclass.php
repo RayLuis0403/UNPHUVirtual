@@ -75,7 +75,7 @@ TEXT;
 					<th style="text-align:right;">{$c}</th>
 					
 					<td>
-						<input class="{$class}" placeholder="" type='text' name='txt{$c}' id='txt{$c}' value="<?php  echo htmlentities(\${$this->tabla}->{$campo}); ?>"  />
+						<input class="{$class}" placeholder="{$c}" type='text' name='txt{$c}' id='txt{$c}' value="<?php  echo htmlentities(\${$this->tabla}->{$campo}); ?>"  />
 					</td>
 				</tr>
 TEXT2;
@@ -121,17 +121,17 @@ TEXT;
 			
 				<div class="form-group">
 					<label>{$c}</label>
-					<input class="form-control" placeholder="" type='text' name='txt{$c}' id='txt{$c}' value="<?php  echo htmlentities(\${$this->tabla}->{$campo}); ?>"  />
+					<input class="form-control" placeholder="{$c}" type='text' name='txt{$c}' id='txt{$c}' value="<?php  echo htmlentities(\${$this->tabla}->{$campo}); ?>"  />
 				</div>
 TEXT2;
 	
 
 		}
 		$t .= "
+				<div>
+					<button type='submit' class='btn btn-default'>Guardar</button>
+				</div>
 			</form>
-			<div>
-				<button type='submit' class='btn btn-default'>Guardar</button>
-			</div>
 			<div id='divRs{$this->tabla}'></div>
 			<script language='javascript'>
 				asgForm(\$('#frm{$this->tabla}'),\$('#divRs{$this->tabla}'));
@@ -184,7 +184,7 @@ TEXT2;
 		
 		$this->dbname = (is_null($dbname))?DB_NAME:$dbname;
 		
-		$sql = "select * from `information_schema`.`COLUMNS` where `TABLE_SCHEMA` = '".$this->dbname."' and `TABLE_NAME` = '{$this->tabla}'";
+		$sql = "select * from `information_schema`.`COLUMNS` where `TABLE_SCHEMA` = '".$this->dbname."' and `TABLE_NAME` = '{$this->tabla}'  order by ordinal_position";
 		
 		$rs = mysqli_query(asgMng::getCon(), $sql);
 
@@ -284,13 +284,11 @@ TEXT2;
 		if(\$this->{$this->primario} > 0){
 			\$sql = "update {$this->dbname}.{$this->tabla} set {$sqlu} where `{$this->primario}` = '\$this->{$this->primario}'";
 			
-			
 			\$stmt = mysqli_prepare(asgMng::getCon(), \$sql);
 			
 			mysqli_stmt_bind_param(\$stmt, '{$tdatos}', {$parametros});	
 			mysqli_stmt_execute(\$stmt);
-			
-			
+
 		}
 		else {
 			\$sql = "insert into {$this->dbname}.{$this->tabla} ({$sqlI1}) values ({$sqlI2})";
@@ -375,7 +373,6 @@ GENERADOR;
 		$sqlI2 = implode(",",$sqlI2);
 		$sqlu= implode(",",$sqlu);
 		
-		
 		if(strlen($this->$pri)>1 ||$this->$pri > 0)
 		{
 			$sql = "update {$this->dbname}.{$this->tabla} set {$sqlu} where `{$this->primario}` = '{$this->$pri}'";
@@ -388,7 +385,6 @@ GENERADOR;
 			$p = "mysqli_stmt_bind_param(\$stmt, \$tdatos, {$parametros});";
 			
 			eval($p);
-			
 			mysqli_stmt_execute($stmt);
 			
 			
@@ -449,8 +445,8 @@ GENERADOR;
 			case "varchar":
 				$t = 's';
 			break;
-			
-			case "date";
+			case "datetime":
+			case "date":
 				$t = 's';
 			break;
 			
