@@ -2,11 +2,11 @@
 
     if($_POST){
         
-        include ('../metodos/engine.php');
-        $usuario=new asgClass("usuario");
 
         if(isset($_POST['txtId']))
         {
+            include ('../metodos/engine.php');
+            $usuario=new asgClass("usuario");
             $usuario->Id = (isset($_POST['txtId']))?$_POST['txtId']:$usuario->Id;
             $usuario->Nombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$usuario->Nombre;
             $usuario->Apellidos = (isset($_POST['txtApellidos']))?$_POST['txtApellidos']:$usuario->Apellidos;
@@ -37,9 +37,35 @@
             }
                 
         }
-    }
-    else {
-        
+        else if( isset($_POST['functionname']) ) 
+        {
+            if($_POST['functionname'] == 'validateLogin'){
+
+                include ('../metodos/shortclass.php');
+                //$usuario=new usuario();
+
+                $user = (isset($_POST['txtUser']))?$_POST['txtUser']:"";
+                $pwd = (isset($_POST['txtPassword']))?$_POST['txtPassword']:"";
+                
+                $validUser = false;
+                $error = "";
+                
+                if(usuario::login($user, $pwd)){
+                    $validUser = true;
+                } else
+                {
+                    $error = "Usuario o contraseña invalido.";
+                }
+
+                $response = array( 
+                    "validUser"=> $validUser, 
+                    "error"=> $error); 
+                    
+                echo json_encode($response);
+                
+            }
+        }
+
     }
 
 ?>

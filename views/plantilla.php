@@ -35,43 +35,15 @@
 		<link rel="shorcut icon" href="../images/logo.jpg">
 		<script type="text/javascript" src="../Scripts/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="../Scripts/bootstrap.js"> </script>
+ 		<script src="../Scripts/uikit.js"></script>
+
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
 		<link href="../css/style.css" rel="stylesheet">
+ 		<link rel="stylesheet" href="../css/uikit.min.css"/>
 		
 		<title><?php echo $titulo; ?></title>
 
-		<script type="text/javascript" >	
-			//------------------------------------------------------------------------------
-			//function disableselect(e){ 
-			//	return false 
-			//} 
-			//function reEnable(){ 
-			//	return true 
-			//} 
-			//document.onselectstart=new Function ("return false");
-			//	if (window.sidebar){ 
-			//		document.onmousedown=disableselect 
-			//		document.onclick=reEnable 
-			//	} 
-			////Inhabilitar boton derecho
-			//function right(e) { 
-			//	if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2)){ 
-			//		alert("Coloca el mensaje aquí."); 
-			//		return false; 
-			//	} 
-			//	else if (navigator.appName == 'Microsoft Internet Explorer' && 
-			//	(event.button == 2 || event.button == 3)) { 
-			//		alert("Coloca el mensaje aquí"); 
-			//		return false; 
-			//	} 
-			//	return true; 
-			//} 
-			//document.onmousedown=right;  
-			
-			
-			//------------------------------------------------------------------------------
 		
-		</script>
 	</head>
 
 	<body >
