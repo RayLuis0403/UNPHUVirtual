@@ -23,15 +23,20 @@ class usuario extends asgClass
 	}
 	
 	
-	static function login($email, $password){
+	public static function login($email, $password){
 		$rs = false;
-		$password = usuario::generarClave($password);
-		$dt = new dataTable("select id from usuario where email = '{$email}' and clave = '{$password}'");
+		include_once('util.php');
+
+		$dt = new dataTable("select id, clave from usuario where email = '{$email}'");
+		
 		if($dt->numRows > 0){
 			$fila = $dt->getRow(0);
-			$usuario = new usuario($fila['id']);
-			$_SESSION['sistemaUser'] = serialize($usuario);
-			$rs = true;
+
+			if(decrypt($fila['clave']) == $password){
+				$usuario = new usuario($fila['id']);
+				$_SESSION['sistemaUser'] = serialize($usuario);
+				$rs = true;
+			}
 		}
 		
 		return $rs;
@@ -50,7 +55,8 @@ class usuario extends asgClass
 	
 	function setClave($clave)
 	{
-		$this->clave = usuario::generarClave($clave);
+		include_once('util.php');
+		$this->clave = encrypt($clave);
 		$this->guardar();
 		
 	}

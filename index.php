@@ -1,54 +1,55 @@
+<!DOCTYPE HTML>
 <html>
 	<head>
-	
-	<meta charset="UTF-16">
-		<!--<meta charset="SQL_LATIN1_GENERAL_CP1_CI_AS">-->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shorcut icon" href="./images/logo.jpg">
-		<script type="text/javascript" src="./Scripts/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript" src="./Scripts/bootstrap.js"> </script>
-		<link href="./css/bootstrap.min.css" rel="stylesheet">
-		<link href="./css/style.css" rel="stylesheet">
-		
-		<title>Inicio - UNPHU Virtual</title>
-
-		<script type="text/javascript" src="./Scripts/jquery.slim.js"> </script>
-		<script type="text/javascript" src="./Scripts/bootstrap.bundle.min.js"> </script>
-		<link href="./css/index.css" rel="stylesheet">
+		<title>Home - UNPHU Virtual</title>
+		<script src="./Scripts/jquery-1.11.2.min.js"></script>
+		<script src="./Scripts/uikit.js"></script>
+		<link rel="stylesheet" href="./css/uikit.min.css"/>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="row no-gutter">
-				<div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-				<div class="col-md-8 col-lg-6">
-				<div class="login d-flex align-items-center py-5">
-					<div class="container">
-					<div class="row">
-						<div class="col-md-9 col-lg-8 mx-auto">
-						<div class="image-section">
-							<img src="./images/loginLogo.png" class="login-image">
-						</div>
-						<form>
-							<div class="form-label-group">
-							<input type="input" id="inputUser" class="form-control" placeholder="Usuario" required autofocus>
-							<label for="inputUser">Usario</label>
-							</div>
+		<nav class="uk-navbar-container uk-margin" uk-navbar>
+			<div class="uk-navbar-left">
 
-							<div class="form-label-group">
-							<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-							<label for="inputPassword">Contraseña</label>
-							</div>
-
-							<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
-							<div class="text-center">
-							<a class="small" href="#">Olvide mi contreseña</a></div>
-						</form>
-						</div>
-					</div>
-					</div>
-				</div>
-				</div>
+				<img class="uk-navbar-item uk-logo"  style="width: 12%;"  src="./images/loginLogo.png">
+				<ul class="uk-navbar-nav">
+					<li>
+						<a href="#">
+							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							Sobre Nosotros
+						</a>
+					</li>	
+					<li>
+						<a href="#">
+							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							Estudiantes
+						</a>
+					</li>	
+					<li>
+						<a href="#">
+							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							Docentes
+						</a>
+					</li>
+				</ul>
 			</div>
+		</nav>
+		
+		<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: scale; autoplay: true;autoplay-interval:4000">
+			<ul class="uk-slideshow-items">
+				<li>
+					<img  style="width: 12%;" src="./images/loginLogo.png" width="100" height="100" alt="" uk-cover>
+				</li>
+				<li>
+					<img  style="width: 12%;" src="./images/logo.jpg" width="100" height="100" alt="" uk-cover>
+				</li>
+				<li>
+					<img  style="width: 12%;"  src="./images/logo.jpg" width="100" height="100" alt="" uk-cover>
+				</li>
+			</ul>
+
+			<a class="uk-slidenav-large uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+			<a class="uk-slidenav-large uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
 		</div>
 	</body>
 </html>

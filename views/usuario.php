@@ -37,13 +37,13 @@
 				if(cbx_Tipo == '')
 				{
 					checked = false;
-					alert('Tipo de usuario requerido.');
+                    notification('Tipo de usuario requerido.', 'warning');
 				}
 
 				if(cbx_Estado == '')
 				{
 					checked = false;
-					alert('Estado de usuario requerido.');
+                    notification('Estado de usuario requerido.', 'warning');
 				}
 
 				return checked;
@@ -58,7 +58,7 @@
 					<form role="form" method='post' id='frmusuario' action='../controller/controllerUsuario.php'
 					onsubmit="return checkForm(this);" >			
 					
-						<div class="form-group hidden">
+						<div class="form-group" style="display:none;">
 							<label>Id</label>
 							<input class="form-control" placeholder="" readonly type='text' name='txtId' id='txtId' value="<?php  echo htmlentities($usuario->Id); ?>"  />
 						</div>			
@@ -113,8 +113,8 @@
 					</script>
 				</div>
 		
-				<div style="margin:0px 15px 30px 15px;">
-				<?php
+				<div class="col-md-8" style="height: 570px;overflow: auto;">
+					<?php
 						$sql="select * from usuario";
 						$grid=new dataGrid(new dataTable($sql));
 						$grid->noVisibles = array('Id', 'Clave');
