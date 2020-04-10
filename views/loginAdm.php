@@ -19,21 +19,20 @@
 		<link href="../css/index.css" rel="stylesheet">
 
         <script type="text/javascript">
-            $(document).ready(function(){
-                $('#txtUser').keypress(function(event){
-                    var keycode = (event.keyCode ? event.keyCode : event.which);
-                    if(keycode == '13'){
-                        $("#txtPassword").focus();
-                    }
-                });
-                $('#txtPassword').keypress(function(event){
-                    var keycode = (event.keyCode ? event.keyCode : event.which);
-                    if(keycode == '13'){
-                        $(".btn").click();
-                    }
-                });
+$(document).ready(function(){
+            $('#txtUser').keypress(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+                    $("#txtPassword").focus();
+                }
             });
-
+            $('#txtPassword').keypress(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+                    $(".btn").click();
+                }
+            });
+        });
             function checkLoginForm(){
                 
 				var inputUser = $("#txtUser").val();
@@ -60,44 +59,26 @@
 
             function validateLogin(){
                 
-                setDisableToControls(true);
                 jQuery.ajax({
                     type: "POST",
                     dataType: 'json',
                     url: '../controller/controllerUsuario.php',
                     data: {functionname: 'validateLogin', txtUser: $("#txtUser").val(), txtPassword: $("#txtPassword").val()}, 
                     success:function(data) {
-                        
                         if(data && data.validUser){
-
-                            if(data.user){
-                                localStorage.setItem('currentUser', JSON.stringify(data.user));
-                            }
-
-                            $("#btnSignIn").css('background-color','green');
+                            $("#txtUser"). prop("disabled", true);
+                            $("#txtPassword"). prop("disabled", true);
+                            $(".btn"). prop("disabled", true);
+                            $(".btn").css('background-color','green');
 
                             notification("Usuario validado correctamente.", 'success');
-                            setTimeout(function(){ window.location = './about.php'; }, 2000);
+                            setTimeout(function(){ window.location = './unphu.php'; }, 2000);
                         }
                         else {
                             notification(data.error, 'warning');
                         }
-                        
-                        setDisableToControls(false);
                     }
                 });
-            }
-
-            function setDisableToControls(disabled){
-                
-                $("#btnSignIn"). prop("disabled", disabled);
-                $("#txtUser"). prop("disabled", disabled);
-                $("#txtPassword"). prop("disabled", disabled);
-
-                if(disabled)
-                    $("#forgotPassword").addClass("uk-invisible");
-                else
-                $("#forgotPassword").removeClass("uk-invisible");
             }
 
         </script>
@@ -119,19 +100,19 @@
                             </div>
                             <form role="form" method='post' onsubmit=" checkLoginForm(this);" >
                                 <div class="form-label-group">
-                                    <input type="email" id="txtUser" name="txtUser" class="form-control" placeholder="Usuario" required autofocus>
-                                    <label for="txtUser">Usuario</label>
+                                <input type="email" id="txtUser" name="txtUser" class="form-control" placeholder="Usuario" required autofocus>
+                                <label for="txtUser">Usuario</label>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <input type="password" id="txtPassword" name="txtPassword"  class="form-control" placeholder="Password" required>
-                                    <label for="txtPassword">Contraseña</label>
+                                <input type="password" id="txtPassword" name="txtPassword"  class="form-control" placeholder="Password" required>
+                                <label for="txtPassword">Contraseña</label>
                                 </div>
 
                             </form>
-							<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" id="btnSignIn" type="button" onClick="checkLoginForm();">Ingresar</button>
+							<button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" id="btnSignIn" type="button" onClick="checkLoginForm();">Sign in</button>
 							<div class="text-center">
-							    <a class="small" id="forgotPassword" href="#">Olvide mi contreseña</a>
+							    <a class="small" href="#">Olvide mi contreseña</a>
                             </div>
 						</div>
 					</div>
