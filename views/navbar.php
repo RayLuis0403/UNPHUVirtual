@@ -28,6 +28,12 @@
 							Administrativo
 						</a>
 					</li>
+					<li>
+						<a href="../views/ofertaAcademica.php">
+							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							Oferta Academica
+						</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
