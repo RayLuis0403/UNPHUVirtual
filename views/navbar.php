@@ -1,12 +1,16 @@
 <?php
 
-	session_start();
+	if (!isset($_SESSION))
+		session_start();
+	
 	include('../metodos/asgclass.php');
 	include('../metodos/shortclass.php');
 	$usuario = obtenerUsuario();
 	$userLogged = false;
 	$isAdmin = false;
+
 	if($usuario != null){
+		$userLogged = true;
 		$isAdmin = ($usuario->Tipo == "Administrador");
 	}
 
@@ -14,18 +18,13 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<!-- <script src="./Scripts/jquery-1.11.2.min.js"></script>
-		<script src="./Scripts/uikit.js"></script>
-		<link rel="stylesheet" href="./css/uikit.min.css"/> -->
-		<script type="text/javascript">
-		</script>
 	</head>
 	<body>
 		<nav class="uk-navbar-container uk-margin" uk-navbar>
 			<div class="uk-navbar-left">
 
 				<a href="../"  class="uk-navbar-item uk-logo"  style="width: 12%;" >
-					<img src="../images/loginLogo.png">
+					<img src="../images/unphuVirtual.png">
 				</a>
 				<ul class="uk-navbar-nav">
 					<li>
@@ -90,12 +89,18 @@ E;
 			</div>
 			<div class="uk-navbar-left">
 				<ul class="uk-navbar-nav">
-					<li>
-						<a href="logout.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-							Salir
-						</a>
-					</li>
+					<?php
+						if($userLogged) {
+							echo <<<E
+						<li>
+							<a href="logout.php">
+								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+								Salir
+							</a>
+						</li>
+E;
+						}
+					?>
 				</ul>
 			</div>
 		</nav>

@@ -8,11 +8,6 @@
     min-height: 100vh;
   }
   
-  .bg-image {
-    background-image: url('../images/backgroundLogin.jpg');
-    background-size: cover;
-    background-position: center;
-  }
 
   .image-section{
     text-align: center;
