@@ -7,7 +7,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+	
+		<script type="text/javascript">
+			console.log('about');
+		</script>
 	</head>
-	<body>
+	<body>	
 	</body>
 </html>

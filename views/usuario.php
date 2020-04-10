@@ -1,9 +1,10 @@
 <?php  
 	$titulo = "Registro de Usuarios";
-	
+	$validateAdmin = true;
+
 	include ("plantilla.php");
 	include ("../metodos/engine.php");
-	$usuario=new asgClass("usuario");
+	$usuario = new asgClass("usuario");
 
 	if(isset($_GET['cod'])){
 		$cod=(isset($_GET['cod']))?$_GET['cod']:0;
@@ -14,7 +15,7 @@
 <html>
 	<head>
 		<script type="text/javascript">
-
+			console.log('Usuario');
 			function editar(cod){
 				let path = window.location.pathname;
 				let page = path.split("/").pop();

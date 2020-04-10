@@ -1,10 +1,17 @@
 <?php
-include("../modelos/includes.php");
+
+include("../metodos/engine.php");
 
 
-session_start();
 session_destroy();
 
-		header("location:../");
+//header("location:../");
 
-	
+?>
+<html>
+	<script  type="text/javascript">
+		localStorage.clear();
+		sessionStorage.clear();
+		window.location = '../';	
+	</script>
+</html>
