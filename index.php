@@ -13,7 +13,7 @@
 				<img class="uk-navbar-item uk-logo"  style="width: 12%;"  src="./images/loginLogo.png">
 				<ul class="uk-navbar-nav">
 					<li>
-						<a href="#">
+						<a href="views/unphu.php">
 							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
 							Sobre Nosotros
 						</a>
@@ -27,7 +27,7 @@
 					<li>
 						<a href="#">
 							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-							Docentes
+							Administrativo
 						</a>
 					</li>
 				</ul>
