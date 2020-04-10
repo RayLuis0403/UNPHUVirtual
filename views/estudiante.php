@@ -1,5 +1,6 @@
 <?php  
 	$titulo = "Registro de Estudiantes";
+	$validateAdmin = true;
 	
 	include ("plantilla.php");
 	include ("../metodos/engine.php");

@@ -41,7 +41,7 @@
         {
             if($_POST['functionname'] == 'validateLogin'){
 
-                include ('../metodos/shortclass.php');
+                //include ('../metodos/shortclass.php');
 
                 $userEmail = (isset($_POST['txtUser']))?$_POST['txtUser']:"";
                 $pwd = (isset($_POST['txtPassword']))?$_POST['txtPassword']:"";

@@ -22,23 +22,29 @@ class usuario extends asgClass
 		return md5("{$clave}{$salt}");
 	}
 	
-	
 	public static function login($email, $password){
 		$rs = false;
 		include_once('util.php');
 
-		$dt = new dataTable("SELECT id, clave FROM usuario WHERE email = '{$email}'");
+		$dt = new dataTable("SELECT id, clave, estado FROM usuario WHERE email = '{$email}'");
 		
 		if($dt->numRows > 0){
 			$fila = $dt->getRow(0);
 			if(decrypt($fila['clave']) == $password){
-				$usuario = new usuario($fila['id']);
-				$_SESSION['sistemaUser'] = serialize($usuario);
+				if($fila['estado'] == 'Activo'){
+					$usuario = new usuario($fila['id']);
+					$_SESSION['sistemaUser'] = serialize($usuario);
+					
+					return array( 
+						"validUser"=> true,
+						"user" => $usuario,
+						"error"=> "");
+				}
 				
 				return array( 
-					"validUser"=> true,
-					"user" => $usuario,
-					"error"=> "");
+					"validUser"=> false,
+					"user" => null,
+					"error"=> "Su usuario no se encuentra activo, estado actual {$fila['estado']}, comuniquese con administracion.");
 			}
 		}
 		
