@@ -1,9 +1,14 @@
+<?php
+
+    if (!isset($_SESSION))
+        session_start();
+?>
 <html>
 	<head>
 	
         <meta charset="UTF-16" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="shorcut icon" href="../images/logo.jpg" />
+		<link rel="shorcut icon" href="../images/unphu-favicon-32x32-1.webp" />
 		<script type="text/javascript" src="../Scripts/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="../Scripts/bootstrap.js"> </script>
 		<script type="text/javascript" src="../Scripts/jquery-3.4.1.js"> </script>
@@ -101,6 +106,14 @@
             }
 
         </script>
+        
+        <style>
+           .bg-image {
+                background-image: url('../images/backgroundEst.jpg');
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
 	</head>
 	<body>
     <?php  
@@ -115,7 +128,7 @@
 					<div class="row">
 						<div class="col-md-9 col-lg-8 mx-auto">
                             <div class="image-section">
-                                <img src="../images/loginLogo.png" class="login-image">
+                                <img src="../images/unphuVirtual.png" class="login-image">
                             </div>
                             <form role="form" method='post' onsubmit=" checkLoginForm(this);" >
                                 <div class="form-label-group">
