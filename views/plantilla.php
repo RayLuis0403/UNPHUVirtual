@@ -52,7 +52,7 @@
 
 		<script type="text/javascript">
 			console.log('plantilla', '<?php echo $titulo?>' );
-
+				
 				let path = window.location.pathname;
 				let page = path.split("/").pop();
 
@@ -89,12 +89,13 @@
 			<?php include('navbar.php'); ?>
 	<?php
 	}
-
+		
 	function __destruct(){
 	?>	
 		</div>
 		<div class="col-md-12" id="divpie">
 			<footer >
+				</br>
 				<p style="font-size: 18px;">&copy; <?php $f=getdate(); echo($f['year']); ?>  -  Derechos Reservados UNPHU Virtual.</p> </br>
 			</footer>
 
