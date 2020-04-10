@@ -3,9 +3,9 @@
     if($_POST){
         
 
+        include ('../metodos/engine.php');
         if(isset($_POST['txtId']))
         {
-            include ('../metodos/engine.php');
             $usuario=new asgClass("usuario");
             $usuario->Id = (isset($_POST['txtId']))?$_POST['txtId']:$usuario->Id;
             $usuario->Nombre = (isset($_POST['txtNombre']))?$_POST['txtNombre']:$usuario->Nombre;
@@ -42,27 +42,33 @@
             if($_POST['functionname'] == 'validateLogin'){
 
                 include ('../metodos/shortclass.php');
-                //$usuario=new usuario();
 
-                $user = (isset($_POST['txtUser']))?$_POST['txtUser']:"";
+                $userEmail = (isset($_POST['txtUser']))?$_POST['txtUser']:"";
                 $pwd = (isset($_POST['txtPassword']))?$_POST['txtPassword']:"";
                 
                 $validUser = false;
                 $error = "";
                 
-                if(usuario::login($user, $pwd)){
-                    $validUser = true;
-                } else
-                {
-                    $error = "Usuario o contraseña invalido.";
+                $response = usuario::login($userEmail, $pwd);
+                 
+                echo json_encode($response);
+                
+            }
+            else if($_POST['functionname'] == 'getUser'){
+                
+	            include_once('../metodos/shortclass.php');
+                $currentUser = obtenerUsuario();
+                
+                $isLogged = false;
+                if($currentUser || $currentUser->Tipo){
+                    $isLogged = true;
                 }
 
                 $response = array( 
-                    "validUser"=> $validUser, 
-                    "error"=> $error); 
-                    
-                echo json_encode($response);
+                    "isLogged"=> $isLogged, 
+                    "user"=> $currentUser); 
                 
+                echo json_encode($response);
             }
         }
 

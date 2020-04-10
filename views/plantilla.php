@@ -7,6 +7,9 @@
 	}
 	
 	$titulo .= "-UNPHU Virtual";
+	
+	$curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+
 
 	/*ini_set("display_errors", 0);
 	ini_set("register_globals",0);
@@ -35,6 +38,7 @@
 		<link rel="shorcut icon" href="../images/logo.jpg">
 		<script type="text/javascript" src="../Scripts/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript" src="../Scripts/bootstrap.js"> </script>
+		<script src="../Scripts/uikit-icons.min.js"></script>
  		<script src="../Scripts/uikit.js"></script>
 
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -43,6 +47,33 @@
 		
 		<title><?php echo $titulo; ?></title>
 
+		<script type="text/javascript">
+
+			let path = window.location.pathname;
+			let page = path.split("/").pop();
+
+			let currentUser = localStorage.currentUser;
+			if(!currentUser){
+				alert('No tiene permisos para acceder a esta area.', 'warning');
+				window.location = './logout.php';	
+			}
+
+			currentUser = JSON.parse(localStorage.currentUser);
+			if(currentUser.Tipo !== 'Administrador'){
+				alert('No tiene permisos para acceder a esta area.', 'warning');
+				window.location = './logout.php';	
+			}
+
+			function editar(cod){
+
+				let queryString = '';
+				if(cod >= 0){
+					queryString = "?cod="+cod;
+				}
+				
+				window.location= page + queryString;
+			}
+		</script>
 		
 	</head>
 

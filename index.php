@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Home - UNPHU Virtual</title>
+		<link rel="shorcut icon" href="./images/logo.jpg">
 		<script src="./Scripts/jquery-1.11.2.min.js"></script>
 		<script src="./Scripts/uikit.js"></script>
 		<link rel="stylesheet" href="./css/uikit.min.css"/>
@@ -10,24 +11,32 @@
 		<nav class="uk-navbar-container uk-margin" uk-navbar>
 			<div class="uk-navbar-left">
 
-				<img class="uk-navbar-item uk-logo"  style="width: 12%;"  src="./images/loginLogo.png">
+			<a style="width: 12%;" href="./" class="uk-navbar-item uk-logo">
+				<img   src=".\images\loginLogo.png">
+			</a>
 				<ul class="uk-navbar-nav">
 					<li>
-						<a href="#">
+						<a href="./views/about.php">
 							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
 							Sobre Nosotros
 						</a>
 					</li>	
 					<li>
-						<a href="#">
+						<a href="./views/loginEst.php">
 							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
 							Estudiantes
 						</a>
 					</li>	
 					<li>
-						<a href="#">
+						<a href="./views/loginEst.php">
 							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
 							Docentes
+						</a>
+					</li>
+					<li>
+						<a href="./views/loginEst.php">
+							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							Administrador
 						</a>
 					</li>
 				</ul>
