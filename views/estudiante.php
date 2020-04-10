@@ -1,5 +1,6 @@
 <?php  
 	$titulo = "Registro de Estudiantes";
+	$validateAdmin = true;
 	
 	include ("plantilla.php");
 	include ("../metodos/engine.php");
@@ -10,9 +11,9 @@
     <body>
         <div class="row col-md-12">
             <div class="col-md-4 col-md-offset-4">
-                <form role="form" method='post' id='frmestudiante' action='modulos/sfsdfsdf/pagina.php'>			
+                <form role="form" method='post' id='frmestudiante'>			
                 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label>Id</label>
                         <input class="form-control" placeholder="Id" type='text' name='txtId' id='txtId' value="<?php  echo htmlentities($estudiante->Id); ?>"  />
                     </div>			
@@ -67,7 +68,8 @@
                         <input class="form-control" placeholder="Direccion" type='text' name='txtDireccion' id='txtDireccion' value="<?php  echo htmlentities($estudiante->Direccion); ?>"  />
                     </div>
                     <div>
-                        <button type='submit' class='btn btn-default'>Guardar</button>
+						<button type='submit' class='btn btn-primary'>Guardar</button>
+						<button type='button' class='btn btn-default' onClick="editar();">Cancelar</button>
                     </div>
                 </form>
                 <div id='divRsestudiante'></div>

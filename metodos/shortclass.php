@@ -2,7 +2,7 @@
 
 function obtenerUsuario(){
 	
-	return unserialize($_SESSION['sistemaUser']);
+	return isset($_SESSION['sistemaUser']) ? unserialize($_SESSION['sistemaUser']) : null;
 }
 
 function obtenerEmpresa(){
@@ -22,24 +22,36 @@ class usuario extends asgClass
 		return md5("{$clave}{$salt}");
 	}
 	
-	
 	public static function login($email, $password){
 		$rs = false;
 		include_once('util.php');
 
-		$dt = new dataTable("select id, clave from usuario where email = '{$email}'");
+		$dt = new dataTable("SELECT id, clave, estado FROM usuario WHERE email = '{$email}'");
 		
 		if($dt->numRows > 0){
 			$fila = $dt->getRow(0);
-
 			if(decrypt($fila['clave']) == $password){
-				$usuario = new usuario($fila['id']);
-				$_SESSION['sistemaUser'] = serialize($usuario);
-				$rs = true;
+				if($fila['estado'] == 'Activo'){
+					$usuario = new usuario($fila['id']);
+					$_SESSION['sistemaUser'] = serialize($usuario);
+					
+					return array( 
+						"validUser"=> true,
+						"user" => $usuario,
+						"error"=> "");
+				}
+				
+				return array( 
+					"validUser"=> false,
+					"user" => null,
+					"error"=> "Su usuario no se encuentra activo, estado actual {$fila['estado']}, comuniquese con administracion.");
 			}
 		}
 		
-		return $rs;
+		return array( 
+			"validUser"=> false,
+			"user" => null,
+			"error"=> "Usuario o Contraseña invalido." );
 		
 	}
 	

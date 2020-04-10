@@ -3,7 +3,10 @@ session_start();
 include("configx.php");
 include("conexion.php");
 include("asgControls.php");
+if(!class_exists('asgclass'))
 include("asgclass.php");
+if(!class_exists('usuario'))
+	include("shortclass.php");
 include("util.php");
 
 //Set zona a Santo domingo
