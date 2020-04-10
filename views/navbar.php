@@ -73,7 +73,7 @@ E;
 						<li>
 							<a href="../views/loginAdm.php">
 								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-								Administrativo
+								Administrativos
 							</a>
 						</li>
 E;
