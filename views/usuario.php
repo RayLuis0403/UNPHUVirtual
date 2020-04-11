@@ -15,17 +15,49 @@
 <html>
 	<head>
 		<script type="text/javascript">
-			console.log('Usuario');
-			function editar(cod){
-				let path = window.location.pathname;
-				let page = path.split("/").pop();
+			
+            var frmusuario;
+            $(document).ready(function(){
 
-				let queryString = '';
-				if(cod >= 0){
-					queryString = "?cod="+cod;
-				}
+				frmusuario = document.getElementById('frmusuario');
+
+				frmusuario.onsubmit = saveUsuario;
+			});
+
+            function saveUsuario(e){
+                e.preventDefault();
+                if(!checkForm()){
+                    return;
+                }
 				
-				window.location= page + queryString;
+                var formData= getFormData('frmusuario');
+
+                $("#btnSave"). prop("disabled", true);
+                $("#btnCancel"). prop("disabled", true);
+
+                jQuery.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: '../controller/controllerUsuario.php',
+                    data: {functionname: 'saveUsuario', formData: formData}, 
+                    success:function(dataResponse) {
+                        
+                        if(dataResponse && dataResponse.saved){
+
+                            $("#btnSave").css('background-color','green');
+
+                            notification("Usuario guardado correctamente.", 'success');
+                            setTimeout(function(){ window.location = './usuario.php'; }, 2000);
+                        }
+                        else {
+                            notification(dataResponse.error, 'warning');
+                        }
+                        
+                        $("#btnSave"). prop("disabled", false);
+                        $("#btnCancel"). prop("disabled", false);
+                    }
+                });
+
 			}
 
 			function checkForm(){
@@ -54,67 +86,76 @@
 	</head>
 	<body>
 		<div class="col-md-12" style="background-color:white"> 	
-			<div class="row">
-				<div class="col-md-4">
-					<form role="form" method='post' id='frmusuario' action='../controller/controllerUsuario.php'
-					onsubmit="return checkForm(this);" >			
-					
-						<div class="form-group" style="display:none;">
-							<label>Id</label>
-							<input class="form-control" placeholder="" readonly type='text' name='txtId' id='txtId' value="<?php  echo htmlentities($usuario->Id); ?>"  />
-						</div>			
-					
-						<div class="form-group">
-							<label>Nombre</label>
-							<input class="form-control" placeholder="Nombre" required type='text' name='txtNombre' id='txtNombre' value="<?php  echo htmlentities($usuario->Nombre); ?>"  />
-						</div>			
-					
-						<div class="form-group">
-							<label>Apellidos</label>
-							<input class="form-control" placeholder="Apellidos" required  type='text' name='txtApellidos' id='txtApellidos' value="<?php  echo htmlentities($usuario->Apellidos); ?>"  />
-						</div>			
-					
-						<div class="form-group">
-							<label>Email</label>
-							<input class="form-control" placeholder="Email" required  type='email' name='txtEmail' id='txtEmail' value="<?php  echo htmlentities($usuario->Email); ?>"  />
-						</div>			
-					
-						<div class="form-group">
-							<label>Clave</label>
-							<input class="form-control" placeholder="Clave" required  type='password' name='txtClave' id='txtClave' value="<?php  echo htmlentities(decrypt($usuario->Clave)); ?>"  />
-						</div>			
-					
-						<div class="form-group">
-							<label>Tipo</label>
-							<select class='form-control'  name='cbx_Tipo' id='cbx_Tipo' style='visibility:visible; width:px;' >
-								<option style='visibility:hidden; height:1px;' value=''></option>
-								<option <?php if($usuario->Tipo == 'Administrador') echo('selected=selected');?>   value='Administrador'>Administrador</option>
-								<option <?php if($usuario->Tipo == 'Docente') echo('selected=selected');?>   value='Docente'>Docente</option>
-								<option <?php if($usuario->Tipo == 'Estudiante') echo('selected=selected');?>   value='Estudiante'>Estudiante</option>
-							</select>
-						</div>
-					
-						<div class="form-group">
-							<label>Estado</label>
-							
-							<select class='form-control'  name='cbx_Estado' id='cbx_Estado' style='visibility:visible; width:px;' >
-								<option style='visibility:hidden; height:1px;' value=''></option>
-								<option <?php if($usuario->Estado == 'Activo') echo('selected=selected');?>   value='Activo'>Activo</option>
-								<option <?php if($usuario->Estado == 'Inactivo') echo('selected=selected');?>   value='Inactivo'>Inactivo</option>
-							</select>
-						</div>
-					<div>
-						<button type='submit' class='btn btn-primary'>Guardar</button>
-						<button type='button' class='btn btn-default' onClick="editar();">Cancelar</button>
-					</div>
-					</form>
-					<div id='divRsusuario'></div>
-					<script language='javascript'>
-						asgForm($('#frmusuario'),$('#divRsusuario'));
-					</script>
-				</div>
 		
-				<div class="col-md-8" style="height: 570px;overflow: auto;">
+		<form class="uk-grid-small" uk-grid  role="form" method='post' id='frmusuario' >
+			
+			<div class="uk-width-1-3@s" style="display:none;">
+				<label class="uk-form-label" for="txtId">Id</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" readonly type="text" name='txtId' id='txtId' value="<?php  echo htmlentities($usuario->Id); ?>"  />
+				</div>
+			</div>
+
+			<div class="uk-width-1-3@s">
+				<label class="uk-form-label" for="txtNombre">Nombre</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" placeholder="" required type='text' name='txtNombre' id='txtNombre' value="<?php  echo htmlentities($usuario->Nombre); ?>"  />
+				</div>
+			</div>
+			
+			<div class="uk-width-1-3@s">
+				<label class="uk-form-label" for="txtApellidos">Apellidos</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" placeholder="" required  type='text' name='txtApellidos' id='txtApellidos' value="<?php  echo htmlentities($usuario->Apellidos); ?>"  />
+				</div>
+			</div>
+			
+			<div class="uk-width-1-3@s">
+				<label class="uk-form-label" for="cbx_Tipo">Tipo</label>
+				<div class="uk-form-controls">
+					<select class='uk-select'  name='cbx_Tipo' id='cbx_Tipo' style='visibility:visible; width:px;' >
+						<option style='visibility:hidden; height:1px;' value=''></option>
+						<option <?php if($usuario->Tipo == 'Administrador') echo('selected=selected');?>   value='Administrador'>Administrador</option>
+						<option <?php if($usuario->Tipo == 'Docente') echo('selected=selected');?>   value='Docente'>Docente</option>
+						<option <?php if($usuario->Tipo == 'Estudiante') echo('selected=selected');?>   value='Estudiante'>Estudiante</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="uk-width-1-3@s">
+				<label class="uk-form-label" for="txtEmail">Email</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" placeholder="" required  type='email' name='txtEmail' id='txtEmail' value="<?php  echo htmlentities($usuario->Email); ?>"  />
+				</div>
+			</div>
+			
+			<div class="uk-width-1-3@s">
+				<label class="uk-form-label" for="txtClave">Clave</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" placeholder="" required  type='password' name='txtClave' id='txtClave' value="<?php  echo htmlentities(decrypt($usuario->Clave)); ?>"  />
+				</div>
+			</div>
+			
+			<div class="uk-width-1-3@s">
+				<label class="uk-form-label" for="cbx_Estado">Estado</label>
+				<div class="uk-form-controls">
+					<select class='uk-select'  name='cbx_Estado' id='cbx_Estado' style='visibility:visible; width:px;' >
+						<option style='visibility:hidden; height:1px;' value=''></option>
+						<option <?php if($usuario->Estado == 'Activo') echo('selected=selected');?>   value='Activo'>Activo</option>
+						<option <?php if($usuario->Estado == 'Inactivo') echo('selected=selected');?>   value='Inactivo'>Inactivo</option>
+					</select>
+				</div>
+			</div>
+			
+			<div>
+				<button type='submit' id="btnSave" class='btn btn-primary'>Guardar</button>
+				<button type='button' id="btnCancel" class='btn btn-danger' onClick="editar();">Cancelar</button>
+			</div>
+
+		</form>
+
+			<div class="row">
+				<div class="col-md-8">
 					<?php
 						$sql="select * from usuario";
 						$grid=new dataGrid(new dataTable($sql));

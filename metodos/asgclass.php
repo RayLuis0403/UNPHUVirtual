@@ -109,20 +109,20 @@ TEXT2;
 	{
 		//title=\"<?php  echo \${$this->tabla}->dbcoment['$campo']; ? > \";
 		$t = <<<TEXT
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
-			<form role="form" method='post' id='frm{$this->tabla}' action='modulos/sfsdfsdf/pagina.php'>
+		<div class="col-md-12">
+			<form class="uk-grid-small" uk-grid role="form" method='post' id='frm{$this->tabla}' >
 TEXT;
 		foreach($this->campos as $campo)
 		{
 			$c = ucwords($campo);
 			$t .=   <<<TEXT2
 			
-			
-				<div class="form-group">
-					<label>{$c}</label>
-					<input class="form-control" placeholder="{$c}" type='text' name='txt{$c}' id='txt{$c}' value="<?php  echo htmlentities(\${$this->tabla}->{$campo}); ?>"  />
+			<div class="uk-width-1-3@s">
+				<label  class="uk-form-label" for="txtNombre">{$c}</label>
+				<div class="uk-form-controls">
+					<input class="uk-input" placeholder="{$c}" type='text' name='txt{$c}' id='txt{$c}' value="<?php  echo htmlentities(\${$this->tabla}->{$campo}); ?>"  />
 				</div>
+			</div>
 TEXT2;
 	
 
@@ -372,7 +372,7 @@ GENERADOR;
 		$sqlI1 = implode(",",$sqlI1);
 		$sqlI2 = implode(",",$sqlI2);
 		$sqlu= implode(",",$sqlu);
-		
+		$errores = "";
 		if(strlen($this->$pri)>1 ||$this->$pri > 0)
 		{
 			$sql = "update {$this->dbname}.{$this->tabla} set {$sqlu} where `{$this->primario}` = '{$this->$pri}'";
@@ -389,11 +389,14 @@ GENERADOR;
 			
 			
 			//mysql_query($sql);
-			/*
-			if(mysql_error())
+			//$errores = mysql_error();
+			if($mostrarError)
 			{
-				$todoBien = false;	
-			}*/
+				$errores = mysqli_error(asgMng::getCon());
+				if($errores != '')
+					$todoBien = false;
+				$errores;
+			}
 		}
 		else
 		{
@@ -410,12 +413,19 @@ GENERADOR;
 			mysqli_stmt_execute($stmt);
 			if($mostrarError)
 			{
-				echo mysqli_error(asgMng::getCon());
+				$errores = mysqli_error(asgMng::getCon());
+				if($errores != '')
+					$todoBien = false;
+				$errores;
 			}
 			$this->$pri = mysqli_insert_id(asgMng::getCon());
 			
 		}
-		return $todoBien;
+
+		return array( 
+			"saved"=> $todoBien,
+			"object" => $this,
+			"error"=> $errores);
 	}
 	
 	function cargar()

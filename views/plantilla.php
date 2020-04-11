@@ -8,7 +8,6 @@
 	
 	$titulo .= "-UNPHU Virtual";
 	
-	$curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
 
 	/*ini_set("display_errors", 0);
 	ini_set("register_globals",0);
@@ -43,10 +42,11 @@
 		<script type="text/javascript" src="../Scripts/bootstrap.js"> </script>
 		<script src="../Scripts/uikit-icons.min.js"></script>
  		<script src="../Scripts/uikit.js"></script>
+ 		<script src="../Scripts/utils.js"></script>
 
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
  		<link rel="stylesheet" href="../css/uikit.min.css"/>
-		<link href="../css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../css/style.css">
 		
 		<title><?php echo $titulo; ?></title>
 
@@ -94,11 +94,40 @@
 	?>	
 		</div>
 		<div class="col-md-12" id="divpie">
-			<footer >
-				</br>
-				<p style="font-size: 18px;">&copy; <?php $f=getdate(); echo($f['year']); ?>  -  Derechos Reservados UNPHU Virtual.</p> </br>
-			</footer>
+			<!-- Footer --><!-- Footer -->
+			<footer class="page-footer font-small special-color-dark pt-4">
 
+			<!-- Footer Elements -->
+			<div class="container">
+
+			<!-- Social buttons -->
+			<ul class="list-unstyled list-inline text-center">
+				<li class="list-inline-item">
+					<a href="" class="uk-icon-button  uk-margin-small-right" uk-icon="facebook"></a>
+				</li>
+				<li class="list-inline-item">
+					<a href="" class="uk-icon-button uk-margin-small-right" uk-icon="twitter"></a>
+				</li>
+				<li class="list-inline-item">
+					<a href="" class="uk-icon-button" uk-icon="google-plus"></a>
+				</li>
+				<li class="list-inline-item">
+					<a href="" class="uk-icon-button" uk-icon="linkedin"></a>
+				</li>
+			</ul>
+			<!-- Social buttons -->
+
+			</div>
+			<!-- Footer Elements -->
+
+			<!-- Copyright -->
+			<div class="footer-copyright text-center py-3">
+				&copy; <?php $f=getdate(); echo($f['year']); ?> Copyright: Derechos Reservados UNPHU Virtual
+			</div>
+			<!-- Copyright -->
+
+			</footer>
+			<!-- Footer -->
 		</div>
 	</body>
 </html>
