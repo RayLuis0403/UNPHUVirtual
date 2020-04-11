@@ -14,6 +14,8 @@
 		$isAdmin = ($usuario->Tipo == "Administrador");
 	}
 
+	$currentPage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -29,7 +31,7 @@
 				<ul class="uk-navbar-nav">
 					<li>
 						<a href="../views/about.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							<span class="uk-icon uk-margin-small-right"></span>
 							Sobre Nosotros
 						</a>
 					</li>
@@ -38,20 +40,20 @@
 						echo <<<E
 						<li>
 							<a href="./usuario.php">
-								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-								Registrar de Usuario
+								<span class="uk-icon uk-margin-small-right"></span>
+								Registro de Usuario
 							</a>
 						</li>
-					<li>
-						<a href="./estudiante.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-							Registrar de Estudiante
-						</a>
-					</li>	
+						<li>
+							<a href="./estudiante.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Registro de Estudiante
+							</a>
+						</li>	
 						<li>
 							<a href="./docente.php">
-								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-								Registrar de Docente
+								<span class="uk-icon uk-margin-small-right"></span>
+								Registro de Docente
 							</a>
 						</li>
 E;
@@ -60,19 +62,19 @@ E;
 							echo <<<E
 							<li>
 							<a href="../views/loginEst.php">
-								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+								<span class="uk-icon uk-margin-small-right"></span>
 								Estudiantes
 							</a>
 						</li>
 						<li>
 							<a href="../views/loginAdm.php">
-								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+								<span class="uk-icon uk-margin-small-right"></span>
 								Docentes
 							</a>
 						</li>	
 						<li>
 							<a href="../views/loginAdm.php">
-								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+								<span class="uk-icon uk-margin-small-right"></span>
 								Administrativos
 							</a>
 						</li>
@@ -81,7 +83,7 @@ E;
 						?>
 					<li>
 						<a href="../views/ofertaAcademica.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+							<span class="uk-icon uk-margin-small-right"></span>
 							Oferta Academica
 						</a>
 					</li>
@@ -94,7 +96,7 @@ E;
 							echo <<<E
 						<li>
 							<a href="logout.php">
-								<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
+								<span class="uk-icon uk-margin-small-right"></span>
 								Salir
 							</a>
 						</li>
