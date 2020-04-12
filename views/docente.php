@@ -69,7 +69,7 @@
 		</script>
 	</head>
     <body>
-		<div class="col-md-12" style="background-color:white"> 	
+		<div class="col-md-12"> 	
             <form class="uk-grid-small" uk-grid  role="form" method='post' id='frmdocente'>
             
                     <div class="uk-width-1-3@s" style="display:none;">
@@ -170,20 +170,22 @@
                         <input class="uk-input" placeholder="" required type='text' name='txtCelular' id='txtCelular' value="<?php  echo htmlentities($docente->Celular); ?>"  />
                     </div>
                 </div>
-                    <div>
+				<div class="uk-width-1-3@s">
+                    <div class="uk-form-controls" style="margin-top: 31px;">
                         <button type='submit' id="btnSave" class='btn btn-primary'>Guardar</button>
                         <button type='button' id="btnCancel" class='btn btn-danger' onClick="editar();">Cancelar</button>
                     </div>
+				</div>
             </form>
-            <div class="col-md-12">
-                <?php
-                    $sql="select * from docente";
-                    $grid=new dataGrid(new dataTable($sql));
-                    $grid->noVisibles = array('Id');
-                    $grid->setRowAction('onclick','editar',array('Id'));
-                    $grid->display();
-                ?>
-            </div>
+			<p></p>
+
+            <?php
+                $sql="select * from docente";
+                $grid=new dataGrid(new dataTable($sql));
+                $grid->noVisibles = array('Id');
+                $grid->setRowAction('onclick','editar',array('Id'));
+                $grid->display();
+            ?>
         </div>
         
     </body>
