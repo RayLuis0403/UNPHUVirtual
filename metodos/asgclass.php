@@ -129,7 +129,7 @@ TEXT2;
 		}
 		$t .= "
 				<div>
-					<button type='submit' class='btn btn-default'>Guardar</button>
+					<button type='submit' class='btn btn-default btnSave'>Guardar</button>
 				</div>
 			</form>
 			<div id='divRs{$this->tabla}'></div>

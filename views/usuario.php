@@ -85,86 +85,84 @@
 		</script>
 	</head>
 	<body>
-		<div class="col-md-12" style="background-color:white"> 	
+		<div class="col-md-12"> 	
 		
-		<form class="uk-grid-small" uk-grid  role="form" method='post' id='frmusuario' >
-			
-			<div class="uk-width-1-3@s" style="display:none;">
-				<label class="uk-form-label" for="txtId">Id</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" readonly type="text" name='txtId' id='txtId' value="<?php  echo htmlentities($usuario->Id); ?>"  />
+			<form class="uk-grid-small" uk-grid  role="form" method='post' id='frmusuario' >
+				
+				<div class="uk-width-1-3@s" style="display:none;">
+					<label class="uk-form-label" for="txtId">Id</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" readonly type="text" name='txtId' id='txtId' value="<?php  echo htmlentities($usuario->Id); ?>"  />
+					</div>
 				</div>
-			</div>
 
-			<div class="uk-width-1-3@s">
-				<label class="uk-form-label" for="txtNombre">Nombre</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" placeholder="" required type='text' name='txtNombre' id='txtNombre' value="<?php  echo htmlentities($usuario->Nombre); ?>"  />
+				<div class="uk-width-1-3@s">
+					<label class="uk-form-label" for="txtNombre">Nombre</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" placeholder="" required type='text' name='txtNombre' id='txtNombre' value="<?php  echo htmlentities($usuario->Nombre); ?>"  />
+					</div>
 				</div>
-			</div>
-			
-			<div class="uk-width-1-3@s">
-				<label class="uk-form-label" for="txtApellidos">Apellidos</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" placeholder="" required  type='text' name='txtApellidos' id='txtApellidos' value="<?php  echo htmlentities($usuario->Apellidos); ?>"  />
+				
+				<div class="uk-width-1-3@s">
+					<label class="uk-form-label" for="txtApellidos">Apellidos</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" placeholder="" required  type='text' name='txtApellidos' id='txtApellidos' value="<?php  echo htmlentities($usuario->Apellidos); ?>"  />
+					</div>
 				</div>
-			</div>
-			
-			<div class="uk-width-1-3@s">
-				<label class="uk-form-label" for="cbx_Tipo">Tipo</label>
-				<div class="uk-form-controls">
-					<select class='uk-select'  name='cbx_Tipo' id='cbx_Tipo' style='visibility:visible; width:px;' >
-						<option style='visibility:hidden; height:1px;' value=''></option>
-						<option <?php if($usuario->Tipo == 'Administrador') echo('selected=selected');?>   value='Administrador'>Administrador</option>
-						<option <?php if($usuario->Tipo == 'Docente') echo('selected=selected');?>   value='Docente'>Docente</option>
-						<option <?php if($usuario->Tipo == 'Estudiante') echo('selected=selected');?>   value='Estudiante'>Estudiante</option>
-					</select>
+				
+				<div class="uk-width-1-3@s">
+					<label class="uk-form-label" for="cbx_Tipo">Tipo</label>
+					<div class="uk-form-controls">
+						<select class='uk-select'  name='cbx_Tipo' id='cbx_Tipo' style='visibility:visible; width:px;' >
+							<option style='visibility:hidden; height:1px;' value=''></option>
+							<option <?php if($usuario->Tipo == 'Administrador') echo('selected=selected');?>   value='Administrador'>Administrador</option>
+							<option <?php if($usuario->Tipo == 'Docente') echo('selected=selected');?>   value='Docente'>Docente</option>
+							<option <?php if($usuario->Tipo == 'Estudiante') echo('selected=selected');?>   value='Estudiante'>Estudiante</option>
+						</select>
+					</div>
 				</div>
-			</div>
-			
-			<div class="uk-width-1-3@s">
-				<label class="uk-form-label" for="txtEmail">Email</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" placeholder="" required  type='email' name='txtEmail' id='txtEmail' value="<?php  echo htmlentities($usuario->Email); ?>"  />
+				
+				<div class="uk-width-1-3@s">
+					<label class="uk-form-label" for="txtEmail">Email</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" placeholder="" required  type='email' name='txtEmail' id='txtEmail' value="<?php  echo htmlentities($usuario->Email); ?>"  />
+					</div>
 				</div>
-			</div>
-			
-			<div class="uk-width-1-3@s">
-				<label class="uk-form-label" for="txtClave">Clave</label>
-				<div class="uk-form-controls">
-					<input class="uk-input" placeholder="" required  type='password' name='txtClave' id='txtClave' value="<?php  echo htmlentities(decrypt($usuario->Clave)); ?>"  />
+				
+				<div class="uk-width-1-3@s">
+					<label class="uk-form-label" for="txtClave">Clave</label>
+					<div class="uk-form-controls">
+						<input class="uk-input" placeholder="" required  type='password' name='txtClave' id='txtClave' value="<?php  echo htmlentities(decrypt($usuario->Clave)); ?>"  />
+					</div>
 				</div>
-			</div>
-			
-			<div class="uk-width-1-3@s">
-				<label class="uk-form-label" for="cbx_Estado">Estado</label>
-				<div class="uk-form-controls">
-					<select class='uk-select'  name='cbx_Estado' id='cbx_Estado' style='visibility:visible; width:px;' >
-						<option style='visibility:hidden; height:1px;' value=''></option>
-						<option <?php if($usuario->Estado == 'Activo') echo('selected=selected');?>   value='Activo'>Activo</option>
-						<option <?php if($usuario->Estado == 'Inactivo') echo('selected=selected');?>   value='Inactivo'>Inactivo</option>
-					</select>
+				
+				<div class="uk-width-1-3@s">
+					<label class="uk-form-label" for="cbx_Estado">Estado</label>
+					<div class="uk-form-controls">
+						<select class='uk-select'  name='cbx_Estado' id='cbx_Estado' style='visibility:visible; width:px;' >
+							<option style='visibility:hidden; height:1px;' value=''></option>
+							<option <?php if($usuario->Estado == 'Activo') echo('selected=selected');?>   value='Activo'>Activo</option>
+							<option <?php if($usuario->Estado == 'Inactivo') echo('selected=selected');?>   value='Inactivo'>Inactivo</option>
+						</select>
+					</div>
 				</div>
-			</div>
-			
-			<div>
-				<button type='submit' id="btnSave" class='btn btn-primary'>Guardar</button>
-				<button type='button' id="btnCancel" class='btn btn-danger' onClick="editar();">Cancelar</button>
-			</div>
+				
+				<div class="uk-width-1-3@s">
+						<div class="uk-form-controls" style="margin-top: 31px;">
+							<button type='submit' id="btnSave" class='btn btn-primary'>Guardar</button>
+							<button type='button' id="btnCancel" class='btn btn-danger' onClick="editar();">Cancelar</button>
+						</div>
+					</div>
 
-		</form>
-
-			<div class="row">
-				<div class="col-md-8">
-					<?php
-						$sql="select * from usuario";
-						$grid=new dataGrid(new dataTable($sql));
-						$grid->noVisibles = array('Id', 'Clave');
-						$grid->setRowAction('onclick','editar',array('Id'));
-						$grid->display();
-					?>
-				</div>
-			</div>
+			</form>
+			<p></p>
+			<?php
+				$sql="select * from usuario";
+				$grid=new dataGrid(new dataTable($sql));
+				$grid->noVisibles = array('Id', 'Clave');
+				$grid->setRowAction('onclick','editar',array('Id'));
+				$grid->display();
+			?>
 		</div>
 	</body>
 </html>
