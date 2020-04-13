@@ -55,7 +55,16 @@
                         
                         $("#btnSave"). prop("disabled", false);
                         $("#btnCancel"). prop("disabled", false);
-                    }
+                    },
+					error: function (xhr, ajaxOptions, thrownError) {
+						console.log('xhr.status', xhr.status);
+						console.log('thrownError', thrownError);
+						notification(thrownError, 'danger');
+                        
+                        $("#btnSave"). prop("disabled", false);
+                        $("#btnCancel"). prop("disabled", false);
+
+					}
                 });
 
 			}

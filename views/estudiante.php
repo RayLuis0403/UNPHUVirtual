@@ -62,6 +62,15 @@
                     
                     $("#btnSave"). prop("disabled", false);
                     $("#btnCancel"). prop("disabled", false);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log('xhr', xhr);
+                    console.log('thrownError', thrownError);
+                    notification(thrownError, 'danger');
+
+                    $("#btnSave"). prop("disabled", false);
+                    $("#btnCancel"). prop("disabled", false);
+
                 }
             });
         }
@@ -74,13 +83,13 @@
                 <div class="uk-width-1-3@s "  style="display:none;">
                     <label  class="uk-form-label" for="txtId">Id</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" placeholder="" type='text' name='txtId' id='txtId' value="<?php  echo htmlentities($estudiante->Id); ?>"  />
+                        <input class="uk-input input-disabled" readonly  placeholder="" type='text' name='txtId' id='txtId' value="<?php  echo htmlentities($estudiante->Id); ?>"  />
                     </div>
                 </div>			
                 <div class="uk-width-1-3@s">
                     <label  class="uk-form-label" for="txtMatricula">Matricula</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" placeholder="" type='text' name='txtMatricula' id='txtMatricula' value="<?php  echo htmlentities($estudiante->Matricula); ?>"  />
+                        <input class="uk-input input-disabled" readonly  placeholder="" type='text' name='txtMatricula' id='txtMatricula' value="<?php  echo htmlentities($estudiante->Matricula); ?>"  />
                     </div>
                 </div>			
                 <div class="uk-width-1-3@s">
@@ -105,7 +114,7 @@
                 <div class="uk-width-1-3@s">
                     <label  class="uk-form-label" for="txtFecha_Nacimiento">Fecha Nacimiento</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" placeholder="" type='text' name='txtFecha_Nacimiento' id='txtFecha_Nacimiento' value="<?php  echo htmlentities($estudiante->Fecha_Nacimiento); ?>"  />
+                        <input class="uk-input" placeholder="" type='date' name='txtFecha_Nacimiento' id='txtFecha_Nacimiento' value="<?php  echo htmlentities($estudiante->Fecha_Nacimiento); ?>"  />
                     </div>
                 </div>			
                     
