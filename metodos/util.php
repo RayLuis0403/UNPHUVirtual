@@ -25,3 +25,24 @@ function decrypt($toDecrypt) {
 //*/
 
 //----------------------------------------------------------------
+
+	function getQuarterOfYear(){
+		
+		$month = date("n");
+	
+		//Calculate the year quarter.
+		$yearQuarter = ceil($month / 3);
+		return $yearQuarter;
+	}
+
+	function fn_lpad ($value, $length, $chr="0") {
+        $val = strval($value);
+		
+		if(strlen($val) < $length){
+			
+			$val = $chr . $val;
+			return fn_lpad($val, $length); 
+		}
+        return  $val;
+	}
+	

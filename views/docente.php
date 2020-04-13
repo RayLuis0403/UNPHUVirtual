@@ -62,6 +62,15 @@
                         
                         $("#btnSave"). prop("disabled", false);
                         $("#btnCancel"). prop("disabled", false);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log('xhr.status', xhr.status);
+                        console.log('thrownError', thrownError);
+                        notification(thrownError, 'danger');
+                        
+                        $("#btnSave"). prop("disabled", false);
+                        $("#btnCancel"). prop("disabled", false);
+
                     }
                 });
             }
@@ -75,14 +84,14 @@
                     <div class="uk-width-1-3@s" style="display:none;">
                         <label class="uk-form-label" for="txtId">Id</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" readonly type="text" name='txtId' id='txtId' value="<?php  echo htmlentities($docente->Id); ?>"  />
+                            <input class="uk-input  input-disabled" readonly type="text" name='txtId' id='txtId' value="<?php  echo htmlentities($docente->Id); ?>"  />
                         </div>
                     </div>
                 
                     <div class="uk-width-1-3@s">
                         <label class="uk-form-label" for="txtCodigo">Codigo</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" placeholder="" required type='text' name='txtCodigo' id='txtCodigo' value="<?php  echo htmlentities($docente->Codigo); ?>"  />
+                            <input class="uk-input  input-disabled" readonly placeholder="" required type='text' name='txtCodigo' id='txtCodigo' value="<?php  echo htmlentities($docente->Codigo); ?>"  />
                         </div>
                     </div>
                 
@@ -133,6 +142,13 @@
                 </div>
                 
                 <div class="uk-width-1-3@s">
+                    <label class="uk-form-label" for="txtCelular">Celular</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" placeholder="" required type='text' name='txtCelular' id='txtCelular' value="<?php  echo htmlentities($docente->Celular); ?>"  />
+                    </div>
+                </div>
+                
+                <div class="uk-width-1-3@s">
                     <label class="uk-form-label" for="cbx_Estado">Estado</label>
                     <div class="uk-form-controls">
                         <select class='uk-select'  name='cbx_Estado' id='cbx_Estado' style='visibility:visible; width:px;' >
@@ -164,12 +180,6 @@
                     </div>
                 </div>
                 
-                <div class="uk-width-1-3@s">
-                    <label class="uk-form-label" for="txtCelular">Celular</label>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" placeholder="" required type='text' name='txtCelular' id='txtCelular' value="<?php  echo htmlentities($docente->Celular); ?>"  />
-                    </div>
-                </div>
 				<div class="uk-width-1-3@s">
                     <div class="uk-form-controls" style="margin-top: 31px;">
                         <button type='submit' id="btnSave" class='btn btn-primary'>Guardar</button>

@@ -9,7 +9,6 @@
         {
             $docente=new asgClass("docente");
             $docente->Id = (isset($_POST['formData']['txtId']))?$_POST['formData']['txtId']:$docente->Id;
-            $docente->Codigo = (isset($_POST['formData']['txtCodigo']))?$_POST['formData']['txtCodigo']:$docente->Codigo;
             $docente->Cedula = (isset($_POST['formData']['txtCedula']))?$_POST['formData']['txtCedula']:$docente->Cedula;
             $docente->Nombres = (isset($_POST['formData']['txtNombres']))?$_POST['formData']['txtNombres']:$docente->Nombres;
             $docente->Apellidos = (isset($_POST['formData']['txtApellidos']))?$_POST['formData']['txtApellidos']:$docente->Apellidos;
@@ -26,9 +25,25 @@
             {
                 $docente->Id = "0";
                 $docente->Fecha_Ingreso = date("Y-m-d H:i:s");
+                
+                $sql="SELECT COUNT(*) Total_Quarter FROM docente";
+                $dt= new dataTable($sql);
+                $numRows = 0;
+                if($dt->getNumRows() > 0)
+                {
+                    $row = $dt->getRow(0);
+                    $numRows = $row["Total_Quarter"];
+                }
+                $numRows = $numRows + 1;
+                
+                $codDocente = fn_lpad($numRows, 4, "0");
+
+                $docente->Codigo = $codDocente;
+
             }
             else{
 	            unset($docente->campos[array_search('Fecha_Ingreso', $docente->campos)]);
+	            unset($docente->campos[array_search('Codigo', $docente->campos)]);
             }
 
             echo json_encode($docente->guardar());
