@@ -79,6 +79,8 @@
 	</head>
     <body>
 		<div class="col-md-12"> 	
+			<h1>Registro de Docente</h1>
+
             <form class="uk-grid-small" uk-grid  role="form" method='post' id='frmdocente'>
             
                     <div class="uk-width-1-3@s" style="display:none;">
