@@ -1,3 +1,22 @@
+<?php
+
+	if (!isset($_SESSION))
+		session_start();
+	
+	include('./metodos/asgclass.php');
+	include('./metodos/shortclass.php');
+	$usuario = obtenerUsuario();
+	$userLogged = false;
+	$isAdmin = false;
+
+	if($usuario != null){
+		$userLogged = true;
+		$isAdmin = ($usuario->Tipo == "Administrador");
+	}
+
+	$currentPage = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -11,9 +30,9 @@
 		<nav class="uk-navbar-container uk-margin" uk-navbar>
 			<div class="uk-navbar-left">
 
-			<a style="width: 12%;" href="./" class="uk-navbar-item uk-logo">
-				<img   src=".\images\unphuVirtual.png">
-			</a>
+				<a style="width: 12%;" href="./" class="uk-navbar-item uk-logo">
+					<img   src=".\images\unphuVirtual.png">
+				</a>
 				<ul class="uk-navbar-nav">
 					<li>
 						<a href="./views/about.php">
@@ -21,30 +40,75 @@
 							Sobre Nosotros
 						</a>
 					</li>	
-					<li>
-						<a href="./views/loginEst.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-							Estudiantes
-						</a>
-					</li>	
-					<li>
-						<a href="./views/loginAdm.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-							Docentes
-						</a>
-					</li>
-					<li>
-						<a href="./views/loginAdm.php">
-							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
-							Administrador
-						</a>
-					</li>
+					<?php 
+					if($isAdmin){
+						echo <<<E
+						<li>
+							<a href="./views/usuario.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Registro de Usuario
+							</a>
+						</li>
+						<li>
+							<a href="./views/estudiante.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Registro de Estudiante
+							</a>
+						</li>	
+						<li>
+							<a href="./views/docente.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Registro de Docente
+							</a>
+						</li>
+E;
+						}
+						else if(!$userLogged) {
+							echo <<<E
+							<li>
+							<a href="./views/loginEst.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Estudiantes
+							</a>
+						</li>
+						<li>
+							<a href="./views/loginAdm.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Docentes
+							</a>
+						</li>	
+						<li>
+							<a href="./views/loginAdm.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Administrativos
+							</a>
+						</li>
+E;
+						}
+						?>
 					<li>
 						<a href="./views/ofertaAcademica.php">
 							<span class="uk-icon uk-margin-small-right" uk-icon="icon: star"></span>
 							Oferta Academica
 						</a>
 					</li>
+				</ul>
+			</div>
+			
+			<div class="uk-navbar-left">
+				<ul class="uk-navbar-nav">
+					<?php
+						if($userLogged) {
+							echo <<<E
+						<li>
+							<a href="./views/logout.php">
+								<span class="uk-icon uk-margin-small-right"></span>
+								Salir
+							</a>
+						</li>
+E;
+						}
+					?>
 				</ul>
 			</div>
 		</nav>
